@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Log Out</a></li>
+            </ul>
+            <div class="student-name">
+                Welcome, {{ student[0] }} {{ student[1] }} {{ student[2] }} <!-- Display first, middle, and last name -->
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="clubs">
+            <h2>Clubs You Are Part Of</h2>
+            {% if clubs %}
+                <ul>
+                    {% for club in clubs %}
+                        <li>
+                            <strong>{{ club[1] }}</strong> - {{ club[2] }} (POR1: {{ club[3] }}, POR2: {{ club[4] }}) 
+                            <a href="/club/{{ club[0] }}">View Details</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>You are not part of any clubs yet.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact | Privacy Policy</p>
+    </footer>
+</body>
+</html>
